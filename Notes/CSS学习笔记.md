@@ -392,15 +392,54 @@ CSS outline 属性规定元素轮廓的样式、颜色和宽度。
 
 ## 四、CSS盒子模型
 
-### 4.1 CSS盒子模型详解
+### 4.1 盒子模型详解
 
-​		盒子模型是CSS中最重要的内容之一, 其核心思想就是将HTML中的所有元素都看成是盒子,盒子里有实际内容(内容 content), 盒子可能有填充物(内边距 padding), 盒子可能有壳(边框border),盒子可能和其他盒子有距离(外边距margin), 这些东西就构成了盒子模型.
+​		在 CSS 盒子模型中，每个的 HTML 元素都会被当作是一个矩形的盒子，然后对它们进行从上到下，从左到右的布局。 一个盒子通常包括四个区域，从里到外分别是：
 
-​		CSS样式主要对盒子的高度、宽带、边框线条、外边距离、内边距离、背景色、元素字体大小、字体颜色等设置样式.
+- 内容区域 - 代表盒子的实际内容部分，它是由 width 宽度和 height 高度来确定的
+- 内间距区域 - 代表盒子与实际内容之间的空白区域，由 padding 属性设置
+- 边框区域 - 代表盒子的边框，是内间距区域和外边距区域的边界，由 border 属性设置
+- 外边距区域 - 代表此盒子的边框与相邻的其他盒子边框之间的距离，由 margin 属性设置
 
 ![](https://gitee.com/minimalism_jyq/image-hosting-service/raw/master/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.png) 
 
-### 4.2 CSS盒子模型的使用
+### 4.2 盒子的类型
+
+CSS 中的盒子模型有两种类型，一种是 content-box，内容盒子，一种是 border-box 边框盒子，通过 css 属性 box-sizing 来设置. 这两种盒子计算宽高的方式是不同的.
+
+1. **content-box**
+
+   > content-box 是 box-sizing 的默认值，也就是说所有的盒子默认都是内容盒子，那么这里 css 属性中的 width 和 height 设置的是它内容区域的宽高，而盒子的宽高需要加上内间距和边框，外边距不算在内。
+
+   *宽度的计算方式是：内容的宽度+左右内间距+左右边框的宽度*
+
+   *高度的计算方式则是：内容的高度+上下内间距+上下边框的宽度*
+
+   ```html
+   <div class="box"></div>
+   ```
+
+   ```css
+   <!-- 盒子的宽高需要加上内间距和边框，外边距不算在内 -->
+   .box {
+       <!-- width 和 height 设置的是它内容区域的宽高 -->
+       width:300px;
+       height:200px;
+       padding:10px;
+       border:5px solid lightblue;
+       margin:20px;
+   }
+   
+   ```
+2. **border-box**
+
+   > 如果把 box-sizing 的值改成 border-box，那么 width 和 height 属性就是分别设置盒子的最终宽度和高度 
+
+   ```css
+   .box {
+     box-sizing: border-box; /* ... */
+   }
+   ```
 
 ### 4.3 CSS盒子模型-盒子模型应用
 
@@ -409,3 +448,4 @@ CSS outline 属性规定元素轮廓的样式、颜色和宽度。
 ## 六、CSS常用操作
 
 ## 七、CSS3基本操作
+
